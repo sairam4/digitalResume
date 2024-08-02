@@ -57,8 +57,8 @@ const SkillsPage = () => {
             key={category}
             className={selectedCategory === category ? "active" : ""}
             onClick={() => filterSkills(category)}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
           >
             {category}
           </motion.button>
@@ -69,8 +69,11 @@ const SkillsPage = () => {
           <motion.div
             key={skill.name}
             className="skill-card"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: index * 0.05 }}
             whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 1.02 }}
+            whileTap={{ scale: 0.95 }}
           >
             <div className="icon">{skill.icon}</div>
             <h3>{skill.name}</h3>
