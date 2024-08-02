@@ -17,7 +17,6 @@ const navItems = [
   { name: "Work", path: "/work" },
   { name: "Resume", path: "/resume" },
   { name: "Contact", path: "/contact" }
-  
 ];
 
 const App = () => {
@@ -33,16 +32,16 @@ const App = () => {
   return (
     <div id="appContainer">
       <header id="navBar" onMouseLeave={() => setHoverIndex(null)}>
-      <Link to="/">
-        <motion.div 
-          id="logo"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          K
-        </motion.div>
-      </Link>
+        <Link to="/">
+          <motion.div 
+            id="logo"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            K
+          </motion.div>
+        </Link>
         <div className="nav-items">
           {navItems.map((item, index) => (
             <Link

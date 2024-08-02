@@ -82,6 +82,17 @@ body, html {
   font-size: 1.3rem;
   margin: 0.3rem 0;
   transition: color 0.3s, transform 0.3s;
+  position: relative;
+}
+
+.subheading[data-hovering="true"]::after {
+  content: '<h3>' attr(data-text) '</h3>';
+  position: absolute;
+  top: -30px;
+  left: 0;
+  color: #ffbd01;
+  font-size: 0.8rem;
+  white-space: nowrap;
 }
 
 .inputContainer {
@@ -106,7 +117,7 @@ body, html {
 
 .dropdown {
   position: absolute;
-  top: -310px; /* Display dropdown above input */
+  top: -310px;
   width: 100%;
   background-color: rgba(0, 0, 0, 0.9);
   border-radius: 5px;

@@ -43,7 +43,7 @@ const LandingPage = () => {
       setCursorX(e.clientX);
       setCursorY(e.clientY);
 
-      textRefs.current.forEach((ref) => {
+      textRefs.current.forEach((ref, index) => {
         if (ref && ref.current) {
           const rect = ref.current.getBoundingClientRect();
           if (
@@ -54,9 +54,11 @@ const LandingPage = () => {
           ) {
             ref.current.style.color = "rgba(255, 255, 255, 0.8)";
             ref.current.style.transform = "scale(1.1)";
+            ref.current.dataset.hovering = true;
           } else {
             ref.current.style.color = "white";
             ref.current.style.transform = "scale(1)";
+            ref.current.dataset.hovering = false;
           }
         }
       });
@@ -149,6 +151,7 @@ const LandingPage = () => {
               whileHover={{ scale: 1.1 }}
               transition={{ type: "spring", stiffness: 300 }}
               className="subheading"
+              data-hovering={false}
             >
               {subheading}
             </motion.p>
