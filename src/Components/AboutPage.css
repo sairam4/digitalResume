@@ -1,0 +1,96 @@
+:root {
+  --main-color1: #E85A4F;
+  --bg-dark: #121212;
+  --text-light: #ffffff;
+  --text-secondary: #b3b3b3;
+  --highlight-color: #E85A4F;
+}
+
+.about-page {
+  padding: 40px 20px;
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.about-header {
+  margin-bottom: 30px;
+}
+
+.about-header h1 {
+  margin-bottom: 10px;
+  font-size: 2.5rem;
+  color: var(--highlight-color);
+}
+
+.about-header p {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+}
+
+.about-section {
+  margin-bottom: 30px;
+  max-width: 800px;
+}
+
+.about-section h2 {
+  margin-bottom: 15px;
+  font-size: 1.8rem;
+  color: var(--highlight-color);
+}
+
+.about-section p {
+  font-size: 1rem;
+  color: var(--text-light);
+  line-height: 1.5;
+}
+
+.interests-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.interest-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #1f1f1f;
+  border-radius: 10px;
+  padding: 20px;
+  width: 120px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.interest-icon {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.interest-item p {
+  font-size: 1rem;
+  color: var(--text-light);
+}
+
+@media (max-width: 768px) {
+  .about-header h1 {
+    font-size: 2rem;
+  }
+
+  .about-section h2 {
+    font-size: 1.5rem;
+  }
+
+  .about-page {
+    padding: 20px;
+  }
+
+  .interests-container {
+    gap: 15px;
+  }
+}

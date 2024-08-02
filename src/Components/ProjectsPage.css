@@ -1,0 +1,186 @@
+:root {
+  --main-color1: #E85A4F;
+  --bg-dark: #121212;
+  --text-light: #ffffff;
+  --text-secondary: #b3b3b3;
+  --highlight-color: #E85A4F;
+}
+
+.projects-page {
+  width: 100%;
+  padding: 40px 20px;
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  font-size: 2.5rem;
+  color: var(--highlight-color);
+  margin-bottom: 20px;
+}
+
+.current-projects-container {
+  width: 100%;
+  position: relative;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+.current-projects {
+  width: 90%; /* Ensure the current projects align properly */
+  height: max-content;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  overflow-x: scroll;
+  padding: 1rem;
+}
+
+.current-project-box {
+  min-width: 200px;
+  height: 200px;
+  background-color: #1f1f1f;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  position: relative;
+  margin: 1rem;
+}
+
+
+.current-project-icon {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  color: var(--highlight-color);
+}
+
+.current-project-info h3 {
+  font-size: 1rem;
+  color: var(--highlight-color);
+  margin: 0;
+}
+
+.current-project-description {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin: 5px 0;
+}
+
+.filter-buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.filter-buttons button {
+  padding: 10px 15px;
+  background-color: transparent;
+  border: 1px solid var(--text-secondary);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.filter-buttons button:hover,
+.filter-buttons button.active {
+  background-color: var(--highlight-color);
+  color: var(--text-light);
+  border-color: var(--highlight-color);
+}
+
+.projects-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  max-width: 1200px;
+}
+
+.project-list-item {
+  padding: 10px 20px;
+  background-color: #1f1f1f;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  transition: transform 0.3s;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.project-list-item:hover {
+  transform: scale(1.05);
+}
+
+.project-item-info {
+  display: flex;
+  flex-direction: column;
+  margin-right: auto;
+}
+
+.project-item-info h3 {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--highlight-color);
+}
+
+.project-year {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.project-description {
+  font-size: 0.9rem;
+  color: var(--text-light);
+  flex: 1;
+  margin-left: 20px;
+}
+
+.tech-badge {
+  display: inline-block;
+  background-color: var(--highlight-color);
+  color: var(--text-light);
+  padding: 5px 8px;
+  margin: 5px 5px 5px 0;
+  border-radius: 5px;
+  font-size: 0.8rem;
+}
+
+.project-link {
+  color: var(--highlight-color);
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.project-link:hover {
+  color: var(--text-light);
+}
+
+@media (max-width: 768px) {
+  .projects-page {
+    padding: 20px;
+  }
+
+  .current-projects {
+    gap: 10px;
+  }
+
+  .projects-list {
+    padding: 1rem;
+  }
+
+  .project-list-item{
+    flex-direction: column;
+  }
+}
