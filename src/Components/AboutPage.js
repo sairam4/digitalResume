@@ -50,7 +50,7 @@ const AboutPage = () => {
         animate={{ opacity: 1 }}
         transition={{ delay: 0.3 }}
       >
-        <h2>Interests & Hobbies</h2>
+        <h2>Interests and Hobbies</h2>
         <div className="interests-container">
           {interests.map((interest, index) => (
             <motion.div
