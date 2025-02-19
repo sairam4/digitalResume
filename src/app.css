@@ -45,6 +45,7 @@ body {
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--nav-border);
   display: flex;
+  justify-content: center;
   align-items: center;
   padding: 0 2rem;
   z-index: 1000;
@@ -60,6 +61,7 @@ body {
 .logo-container {
   display: flex;
   align-items: center;
+  
   padding: 0.5rem;
   border-radius: 8px;
   transition: all 0.3s ease;

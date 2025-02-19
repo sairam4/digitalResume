@@ -225,3 +225,47 @@
     width: 250px;
   }
 }
+
+@media (max-width: 480px) {
+  .main-content {
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .social-links {
+    display: none;
+    gap: 1rem;
+    flex-direction: row;
+    position: static;
+    margin-bottom: 1rem;
+  }
+
+  .text-content {
+    padding: 0 0.5rem;
+  }
+
+  .greeting {
+    font-size: 1rem;
+  }
+
+  .name {
+    font-size: 2rem;
+  }
+
+  .role {
+    font-size: 1rem;
+  }
+
+  .description {
+    font-size: 0.9rem;
+  }
+
+  .cta-button {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .profile-image {
+    width: 200px;
+  }
+}
