@@ -1,226 +1,206 @@
-import React, { useState, useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Link } from "react-router-dom";
+import homepic from '../Resources/homepic.png';
+import resumePDF from '../Resources/KhalidMKhan-Resume.pdf'
+import { 
+  FaGithub, 
+  FaLinkedin, 
+  FaEnvelopeOpenText,
+  FaArrowRight
+} from 'react-icons/fa';
 import './lp.css';
-import HomePic from '../Resources/homepic.png';
-import { FaInfoCircle, FaProjectDiagram, FaEnvelope, FaHome, FaDownload, FaGithub, FaLinkedin, FaEnvelopeOpenText } from 'react-icons/fa';
 
-const commands = [
-  { name: "Download Resume", action: () => window.open('/resume.pdf', '_blank'), icon: <FaDownload /> },
-  { name: "Open GitHub", action: () => window.open('https://github.com/yourusername', '_blank'), icon: <FaGithub /> },
-  { name: "Open LinkedIn", action: () => window.open('https://www.linkedin.com/in/yourprofile', '_blank'), icon: <FaLinkedin /> },
-  { name: "Send Email", action: () => window.open('mailto:someone@example.com'), icon: <FaEnvelopeOpenText /> },
-];
-
-const navItems = [
-  { name: "Home", path: "/", icon: <FaHome /> },
-  { name: "About", path: "/about", icon: <FaInfoCircle /> },
-  { name: "Skills", path: "/skills", icon: <FaProjectDiagram /> },
-  { name: "Projects", path: "/projects", icon: <FaProjectDiagram /> },
-  { name: "Work", path: "/work", icon: <FaProjectDiagram /> },
-  { name: "Contact", path: "/contact", icon: <FaEnvelope /> },
-  { name: "Resume", path: "/resume", icon: <FaDownload /> },
-];
-
-const subheadings = [
-  "Statistical Modeling Enthusiast",
-  "Data Scientist",
-  "NLP Expert",
-  "Creative Designer"
+const socialLinks = [
+  { 
+    name: "GitHub",
+    icon: <FaGithub />,
+    url: "https://github.com/Kahl-d",
+    color: "#333"
+  },
+  { 
+    name: "LinkedIn",
+    icon: <FaLinkedin />,
+    url: "https://www.linkedin.com/in/khalidm-khan/",
+    color: "#0077b5"
+  },
+  { 
+    name: "Email",
+    icon: <FaEnvelopeOpenText />,
+    url: "mailto:khalidmehtabk@gmail.com",
+    color: "#ea4335"
+  }
 ];
 
 const LandingPage = () => {
-  const [query, setQuery] = useState("");
-  const [isFocused, setIsFocused] = useState(false);
-  const [cursorX, setCursorX] = useState(0);
-  const [cursorY, setCursorY] = useState(0);
-  const inputRef = useRef(null);
-  const textRefs = useRef([]);
-  const navigate = useNavigate();
+  const [currentTextIndex, setCurrentTextIndex] = useState(0);
+  
+  const roles = [
+    "AI Engineer",
+    "Statistical Modeling Enthusiast",
+    "Data Scientist",
+    "NLP Expert",
+    "Creative Designer"
+  ];
 
   useEffect(() => {
-    const handleMouseMove = (e) => {
-      setCursorX(e.clientX);
-      setCursorY(e.clientY);
+    const interval = setInterval(() => {
+      setCurrentTextIndex((prev) => (prev + 1) % roles.length);
+    }, 3000);
 
-      textRefs.current.forEach((ref, index) => {
-        if (ref && ref.current) {
-          const rect = ref.current.getBoundingClientRect();
-          if (
-            e.clientX > rect.left &&
-            e.clientX < rect.right &&
-            e.clientY > rect.top &&
-            e.clientY < rect.bottom
-          ) {
-            ref.current.style.color = "rgba(255, 255, 255, 0.8)";
-            ref.current.style.transform = "scale(1.1)";
-            ref.current.dataset.hovering = true;
-          } else {
-            ref.current.style.color = "white";
-            ref.current.style.transform = "scale(1)";
-            ref.current.dataset.hovering = false;
-          }
-        }
-      });
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-    };
+    return () => clearInterval(interval);
   }, []);
 
-  useEffect(() => {
-    const handleKeydown = (event) => {
-      if (!isFocused && /^[a-zA-Z]$/.test(event.key)) {
-        setIsFocused(true);
-        if (inputRef.current) {
-          inputRef.current.focus();
-        }
-      }
-    };
-
-    window.addEventListener("keydown", handleKeydown);
-    return () => {
-      window.removeEventListener("keydown", handleKeydown);
-    };
-  }, [isFocused]);
-
-  const handleChange = (e) => {
-    const value = e.target.value;
-    if (/^[a-zA-Z]*$/.test(value)) {
-      setQuery(value);
+  const headerVariants = {
+    hidden: { y: -20, opacity: 0 },
+    visible: { 
+      y: 0, 
+      opacity: 1,
+      transition: { duration: 0.6, ease: "easeOut" }
     }
   };
 
-  const filteredItems = [...navItems, ...commands].filter(item =>
-    item.name.toLowerCase().includes(query.toLowerCase())
-  );
+  const roleVariants = {
+    enter: { y: 20, opacity: 0 },
+    center: { 
+      y: 0, 
+      opacity: 1,
+      transition: { duration: 0.5 }
+    },
+    exit: { 
+      y: -20, 
+      opacity: 0,
+      transition: { duration: 0.5 }
+    }
+  };
 
   return (
-    <div id="landingPageContainer">
-      <motion.div
-        className="cursorEffect"
-        style={{ left: cursorX - 50, top: cursorY - 50 }}
-        animate={{ left: cursorX - 50, top: cursorY - 50 }}
-        transition={{ type: "spring", stiffness: 200, damping: 20 }}
-      />
-      <motion.div
-        className="cursorRipple"
-        style={{ left: cursorX - 25, top: cursorY - 25 }}
-        animate={{ left: cursorX - 25, top: cursorY - 25 }}
-        transition={{ type: "spring", stiffness: 100, damping: 20 }}
-      />
-      <motion.img
-        src={HomePic}
-        alt="HomePic"
-        id="homePic"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 0.5 }}
-        transition={{ duration: 1.5 }}
-      />
-      <div id="homeTextContainer">
-        <motion.p
-          ref={(el) => textRefs.current[0] = el}
-          initial={{ y: -50, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ type: "spring", stiffness: 120 }}
-          className="smallText"
-        >
-          Hi,
-        </motion.p>
-        <motion.h1
-          ref={(el) => textRefs.current[1] = el}
-          initial={{ y: -50, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ type: "spring", stiffness: 120 }}
-          className="bigText"
-        >
-          I'm Khalid M Khan
-        </motion.h1>
-        <motion.div
-          initial={{ y: -50, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ type: "spring", stiffness: 120 }}
-          className="subheadingContainer"
-        >
-          {subheadings.map((subheading, index) => (
-            <motion.p
-              ref={(el) => textRefs.current[index + 2] = el}
-              key={index}
-              whileHover={{ scale: 1.1 }}
-              transition={{ type: "spring", stiffness: 300 }}
-              className="subheading"
-              data-hovering={false}
-            >
-              {subheading}
-            </motion.p>
-          ))}
-        </motion.div>
+    <div className="landing-container">
+      <div className="gradient-bg"></div>
+      
+      <div className="social-links">
+        {socialLinks.map((link, index) => (
+          <motion.a
+            key={link.name}
+            href={link.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="social-link"
+            whileHover={{ 
+              scale: 1.1,
+              color: link.color
+            }}
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: index * 0.1 }}
+          >
+            {link.icon}
+          </motion.a>
+        ))}
       </div>
 
-      <motion.div
-        className="inputContainer"
-        initial={{ y: -50, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ type: "spring", stiffness: 120 }}
-      >
-        <input
-          type="text"
-          placeholder="Start typing..."
-          value={query}
-          onChange={handleChange}
-          onFocus={() => setIsFocused(true)}
-          onBlur={() => setIsFocused(false)}
-          ref={inputRef}
-        />
-        <AnimatePresence>
-          {isFocused && filteredItems.length > 0 && (
-            <motion.div
-              className="dropdown"
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.3 }}
-            >
-              {filteredItems.map(item => (
-                <motion.div
-                  key={item.name}
-                  className="dropdownItem"
-                  onClick={() => {
-                    if (item.path) {
-                      navigate(item.path);
-                    } else if (item.action) {
-                      item.action();
-                    }
-                    setQuery("");
-                    inputRef.current.blur();
-                  }}
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
-                  <div className="iconBox">
-                    {item.icon}
-                  </div>
-                  <span>{item.name}</span>
-                </motion.div>
-              ))}
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </motion.div>
+      <main className="main-content">
+        <div className="text-content">
+          <motion.p
+            className="greeting"
+            variants={headerVariants}
+            initial="hidden"
+            animate="visible"
+          >
+            Hi, I'm
+          </motion.p>
+          
+          <motion.h1
+            className="name"
+            variants={headerVariants}
+            initial="hidden"
+            animate="visible"
+            transition={{ delay: 0.2 }}
+          >
+            Khalid M Khan
+          </motion.h1>
 
-      <AnimatePresence>
-        {isFocused && (
+          <div className="role-container">
+            <AnimatePresence mode="wait">
+              <motion.p
+                key={currentTextIndex}
+                className="role"
+                variants={roleVariants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+              >
+                {roles[currentTextIndex]}
+              </motion.p>
+            </AnimatePresence>
+          </div>
+
+          <motion.p
+            className="description"
+            variants={headerVariants}
+            initial="hidden"
+            animate="visible"
+            transition={{ delay: 0.6 }}
+          >
+            Transforming data into meaningful insights and creating
+            impactful solutions through innovative approaches.
+          </motion.p>
+
           <motion.div
-            className="backgroundBlur"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
+            className="cta-container"
+            variants={headerVariants}
+            initial="hidden"
+            animate="visible"
+            transition={{ delay: 0.8 }}
+          >
+            <Link to="/projects">
+              <motion.button
+                className="cta-button primary"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                View Projects <FaArrowRight style={{ marginLeft: "8px" }} />
+              </motion.button>
+            </Link>
+            
+            <a href={resumePDF} download>
+              <motion.button
+                className="cta-button secondary"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Download Resume
+              </motion.button>
+            </a>
+
+          </motion.div>
+        </div>
+
+        <motion.div
+          className="image-container"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+        >
+          <motion.div 
+            className="image-backdrop"
+            animate={{ 
+              rotate: [-5, 5, -5],
+              scale: [0.95, 1, 0.95]
+            }}
+            transition={{
+              duration: 8,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
           />
-        )}
-      </AnimatePresence>
+          <img 
+            src={homepic}
+            alt="Profile" 
+            className="profile-image"
+          />
+        </motion.div>
+      </main>
     </div>
   );
 };

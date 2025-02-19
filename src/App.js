@@ -9,91 +9,160 @@ import ProjectsPage from './Components/ProjectsPage';
 import WorkPage from './Components/WorkPage';
 import Contact from './Components/Contact';
 import ResumePage from './Components/ResumePage';
+import { 
+  FaHome,
+  FaUser, 
+  FaCode, 
+  FaProjectDiagram,
+  FaBriefcase,
+  FaFileAlt,
+  FaEnvelope
+} from 'react-icons/fa';
 
 const navItems = [
-  { name: "About", path: "/about" },
-  { name: "Skills", path: "/skills" },
-  { name: "Projects", path: "/projects" },
-  { name: "Work", path: "/work" },
-  { name: "Resume", path: "/resume" },
-  { name: "Contact", path: "/contact" }
+  { name: "About", path: "/about", icon: <FaUser /> },
+  { name: "Skills", path: "/skills", icon: <FaCode /> },
+  { name: "Projects", path: "/projects", icon: <FaProjectDiagram /> },
+  // { name: "Work", path: "/work", icon: <FaBriefcase /> },
+  // { name: "Resume", path: "/resume", icon: <FaFileAlt /> },
+  // { name: "Contact", path: "/contact", icon: <FaEnvelope /> }
 ];
 
 const App = () => {
   const location = useLocation();
   const [hoverIndex, setHoverIndex] = useState(null);
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(-1);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
-    const currentIndex = navItems.findIndex(item => item.path === location.pathname);
-    setActiveIndex(currentIndex);
+    const currentPath = location.pathname;
+    if (currentPath === "/") {
+      setActiveIndex(-1); // Home not in nav items
+    } else {
+      const index = navItems.findIndex(item => item.path === currentPath);
+      setActiveIndex(index);
+    }
   }, [location.pathname]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <div id="appContainer">
-      <header id="navBar" onMouseLeave={() => setHoverIndex(null)}>
-        <Link to="/">
+      <motion.header 
+        id="navBar" 
+        className={isScrolled ? 'scrolled' : ''}
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ type: "spring", stiffness: 300, damping: 30 }}
+        onMouseLeave={() => setHoverIndex(null)}
+      >
+        <Link to="/" className="home-link">
           <motion.div 
-            id="logo"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            className="logo-container"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
           >
-            K
+            <FaHome className="home-icon" />
           </motion.div>
         </Link>
-        <div className="nav-items">
+
+        <nav className="nav-items">
           {navItems.map((item, index) => (
             <Link
               key={item.name}
               to={item.path}
               onMouseEnter={() => setHoverIndex(index)}
               onClick={() => setActiveIndex(index)}
-              className={location.pathname === item.path ? "active" : ""}
+              className={`nav-link ${location.pathname === item.path ? "active" : ""}`}
             >
-              {item.name}
+              <span className="nav-icon">{item.icon}</span>
+              <span className="nav-text">{item.name}</span>
               {location.pathname === item.path && (
-                <motion.div className="dot" layoutId="activeDot" />
+                <motion.div 
+                  className="active-indicator" 
+                  layoutId="activeIndicator"
+                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                />
               )}
             </Link>
           ))}
           <AnimatePresence>
-            {hoverIndex !== null && (
+            {hoverIndex !== null && activeIndex !== hoverIndex && (
               <motion.div
-                className="hoverBackground"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1, x: hoverIndex * 100 }}
+                className="hover-indicator"
+                initial={{ opacity: 0, width: 0 }}
+                animate={{ 
+                  opacity: 1, 
+                  width: "100%",
+                  left: `${hoverIndex * 100}%` 
+                }}
                 exit={{ opacity: 0 }}
                 transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                style={{
+                  position: 'absolute',
+                  bottom: '-2px',
+                  height: '2px',
+                  background: 'var(--main-color2)',
+                  opacity: 0.5,
+                  borderRadius: '2px',
+                  width: '100%',
+                  transform: `translateX(${hoverIndex * 100}%)`
+                }}
               />
             )}
           </AnimatePresence>
-        </div>
-        <div className="mobile-nav">
+        </nav>
+
+        <motion.div 
+          className="mobile-nav"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.2 }}
+        >
           <div className="scrollable-tabs">
             {navItems.map((item, index) => (
               <Link
                 key={item.name}
                 to={item.path}
                 onClick={() => setActiveIndex(index)}
-                className={location.pathname === item.path ? "active" : ""}
+                className={`mobile-nav-link ${location.pathname === item.path ? "active" : ""}`}
               >
-                {item.name}
+                <span className="nav-icon">{item.icon}</span>
+                <span className="nav-text">{item.name}</span>
               </Link>
             ))}
           </div>
-        </div>
-      </header>
-      <main id="maincontainer">
-        <Routes>
-          <Route path="/" element={<LandingPage />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/skills" element={<SkillsPage />} />
-          <Route path="/projects" element={<ProjectsPage />} />
-          <Route path="/work" element={<WorkPage />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/resume" element={<ResumePage />} />
-        </Routes>
+        </motion.div>
+      </motion.header>
+
+      <main id="mainContainer">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={location.pathname}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+            className="page-container"
+          >
+            <Routes location={location} key={location.pathname}>
+              <Route path="/" element={<LandingPage />} />
+              <Route path="/about" element={<AboutPage />} />
+              <Route path="/skills" element={<SkillsPage />} />
+              <Route path="/projects" element={<ProjectsPage />} />
+              {/* <Route path="/work" element={<WorkPage />} /> */}
+              {/* <Route path="/contact" element={<Contact />} /> */}
+              {/* <Route path="/resume" element={<ResumePage />} /> */}
+            </Routes>
+          </motion.div>
+        </AnimatePresence>
       </main>
     </div>
   );
