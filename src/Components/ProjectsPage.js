@@ -14,11 +14,32 @@ import {
   FaExternalLinkAlt,
   FaClock,
   FaSearch,
-  FaFolderOpen
+  FaFolderOpen,
+  FaShieldAlt,
+  FaTrophy,
+  FaUsers,
+  FaArrowRight,
+  FaCode,
+  FaLightbulb
 } from 'react-icons/fa';
+import teamImage from '../Resources/team.jpg';
 import './ProjectsPage.css';
 
 const projects = [
+  {
+    id: "secure-sense",
+    name: "Secure Sense",
+    description: "Winner of Emerging AI Innovation Hack at SF Hacks 2025. Developed a Chrome browser extension using on-device compact LLMs to detect and mask sensitive user data (emails, personal info) during web browsing in real time, enhancing privacy. Led model compression using distillation (LLaMA) reducing model size from approximately 2GB to less than 400 MB while preserving performance. Deployed compact models locally via Ollama for efficient inference.",
+    link: "#", // Add your GitHub link here
+    category: "AI",
+    year: "2025",
+    technologies: ["LLaMA", "Chrome Extension", "Model Compression", "Ollama", "React", "Flask"],
+    icon: <FaShieldAlt />,
+    featured: true,
+    isBanner: true,
+    hackathon: "SF Hacks 2025",
+    award: "Emerging AI Innovation Hack Winner"
+  },
   {
     id: "cultivate-tacit",
     name: "Cultivate: TacIT Alma Research",
@@ -177,159 +198,147 @@ const ProjectsPage = () => {
 
   return (
     <div className="projects-page">
-      {/* Page Header */}
-      <header className="page-header">
-        <h1>Project Portfolio</h1>
-        <p>Exploring the intersection of artificial intelligence, data science, and web development through innovative projects and research initiatives.</p>
-      </header>
-      
+      {/* Hero Section with Latest Hackathon Winner */}
+      <section className="hero-section">
+        <div className="hero-content">
+          <motion.div 
+            className="hero-text"
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <div className="hero-badge">
+              <FaTrophy />
+              <span>Latest Hackathon Winner</span>
+            </div>
+            <h1>Secure Sense</h1>
+            <p className="hero-subtitle">Emerging AI Innovation Hack, SF Hacks 2025</p>
+            <p className="hero-description">
+              A revolutionary Chrome extension that protects your privacy in real-time using on-device AI.
+            </p>
+            <div className="hero-tech">
+              {projects.find(p => p.isBanner).technologies.map(tech => (
+                <span key={tech} className="tech-pill">{tech}</span>
+              ))}
+            </div>
+            <a href={projects.find(p => p.isBanner).link} className="hero-cta">
+              View Project
+              <FaArrowRight />
+            </a>
+          </motion.div>
+          <motion.div 
+            className="hero-image"
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <img src={teamImage} alt="Secure Sense Team" />
+            <div className="image-overlay">
+              <span>Team Secure Sense</span>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Featured Projects Section */}
-      <section className="featured-projects-section">
-        <h2 className="section-title">Featured Projects</h2>
+      <section className="featured-section">
+        <div className="section-header">
+          <h2>Featured Projects</h2>
+          <p>Handpicked projects showcasing innovation and technical excellence</p>
+        </div>
         <motion.div 
-          className="featured-projects-grid"
+          className="featured-grid"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
         >
-          {featuredProjects.map((project) => (
+          {featuredProjects.map((project, index) => (
             <motion.div
               key={project.id}
-              className="featured-project-card"
+              className="featured-card"
               variants={itemVariants}
+              whileHover={{ y: -10 }}
             >
-              <div className="card-header">
-                <div className="project-icon-wrapper">
-                  <div className="project-icon">{project.icon}</div>
-                </div>
-                <span className="project-category">{project.category}</span>
+              <div className="card-icon">{project.icon}</div>
+              <h3>{project.name}</h3>
+              <p>{project.description}</p>
+              <div className="card-tech">
+                {project.technologies.slice(0, 3).map(tech => (
+                  <span key={tech}>{tech}</span>
+                ))}
               </div>
-              
-              <div className="card-content">
-                <h3 className="project-title">{project.name}</h3>
-                <div className="project-year">
-                  <FaClock size={12} />
-                  <span>{project.year}</span>
-                </div>
-                <p className="project-description">{project.description}</p>
-                
-                <div className="card-footer">
-                  <div className="project-tech-stack">
-                    {project.technologies.slice(0, 4).map(tech => (
-                      <span key={tech} className="tech-badge">{tech}</span>
-                    ))}
-                    {project.technologies.length > 4 && (
-                      <span className="tech-badge">+{project.technologies.length - 4}</span>
-                    )}
-                  </div>
-                  
-                  <div className="card-actions">
-                    <a 
-                      href={project.link} 
-                      target="_blank" 
-                      rel="noopener noreferrer" 
-                      className="project-link"
-                    >
-                      View Project
-                      <FaExternalLinkAlt className="project-link-icon" />
-                    </a>
-                  </div>
-                </div>
-              </div>
+              <a href={project.link} className="card-link">
+                Learn More
+                <FaArrowRight />
+              </a>
             </motion.div>
           ))}
         </motion.div>
       </section>
-      
-      {/* Filter Section */}
-      <section className="filter-section">
-        <div className="filter-title">
-          <FaFilter className="filter-icon" />
-          <span>Filter Projects</span>
+
+      {/* Project Categories Section */}
+      <section className="categories-section">
+        <div className="section-header">
+          <h2>Explore by Category</h2>
+          <p>Browse projects based on your interests</p>
         </div>
-        
-        <div className="filter-buttons">
+        <div className="category-grid">
           {categories.map(category => (
             <motion.button
               key={category}
-              className={selectedCategory === category ? "active" : ""}
+              className={`category-card ${selectedCategory === category ? 'active' : ''}`}
               onClick={() => setSelectedCategory(category)}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              {category}
-              <span className="project-count">{categoryCounts[category] || 0}</span>
+              <div className="category-icon">
+                {category === 'AI' && <FaBrain />}
+                {category === 'Data Science' && <FaChartBar />}
+                {category === 'Web Development' && <FaCode />}
+                {category === 'NLP' && <FaLanguage />}
+                {category === 'All' && <FaLightbulb />}
+              </div>
+              <h3>{category}</h3>
+              <span className="project-count">{categoryCounts[category] || 0} projects</span>
             </motion.button>
           ))}
         </div>
       </section>
-      
-      {/* Project List Section */}
-      <section className="projects-list-section">
-        <h2 className="section-title">All Projects</h2>
-        
-        {displayedProjects.length > 0 ? (
-          <AnimatePresence>
-            <motion.div 
-              className="projects-list"
-              variants={containerVariants}
-              initial="hidden"
-              animate="visible"
+
+      {/* All Projects Section */}
+      <section className="all-projects-section">
+        <div className="section-header">
+          <h2>All Projects</h2>
+          <p>Complete portfolio of my work</p>
+        </div>
+        <div className="projects-list">
+          {displayedProjects.map((project, index) => (
+            <motion.div
+              key={project.id}
+              className="project-item"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1 }}
             >
-              {displayedProjects.map((project, index) => (
-                <motion.div
-                  key={project.id}
-                  className="project-list-item"
-                  variants={itemVariants}
-                  layout
-                >
-                  <div className="list-item-info">
-                    <h3>{project.name}</h3>
-                    <div className="list-item-year">
-                      <span className="year-dot"></span>
-                      <span>{project.year}</span>
-                    </div>
-                  </div>
-                  
-                  <p className="list-item-description">{project.description.substring(0, 120)}...</p>
-                  
-                  <div className="list-item-tech">
-                    {project.technologies.slice(0, 3).map(tech => (
-                      <span key={tech} className="tech-badge">{tech}</span>
-                    ))}
-                    {project.technologies.length > 3 && (
-                      <span className="tech-badge">+{project.technologies.length - 3}</span>
-                    )}
-                  </div>
-                  
-                  <div className="list-item-actions">
-                    <a 
-                      href={project.link} 
-                      target="_blank" 
-                      rel="noopener noreferrer" 
-                      className="view-details-btn"
-                    >
-                      View Project
-                      <FaExternalLinkAlt size={12} />
-                    </a>
-                  </div>
-                </motion.div>
-              ))}
+              <div className="project-info">
+                <div className="project-header">
+                  <h3>{project.name}</h3>
+                  <span className="project-year">{project.year}</span>
+                </div>
+                <p>{project.description}</p>
+                <div className="project-tech">
+                  {project.technologies.map(tech => (
+                    <span key={tech}>{tech}</span>
+                  ))}
+                </div>
+              </div>
+              <a href={project.link} className="project-link">
+                View Project
+                <FaExternalLinkAlt />
+              </a>
             </motion.div>
-          </AnimatePresence>
-        ) : (
-          <motion.div 
-            className="empty-state"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-          >
-            <FaFolderOpen className="empty-state-icon" />
-            <p className="empty-state-text">
-              No projects found in the <span className="highlight-text">{selectedCategory}</span> category. 
-              Try selecting a different filter.
-            </p>
-          </motion.div>
-        )}
+          ))}
+        </div>
       </section>
     </div>
   );

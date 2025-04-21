@@ -6,43 +6,25 @@ import LandingPage from './Components/LandingPage';
 import AboutPage from './Components/AboutPage';
 import SkillsPage from './Components/SkillsPage';
 import ProjectsPage from './Components/ProjectsPage';
-import WorkPage from './Components/WorkPage';
-import Contact from './Components/Contact';
-import ResumePage from './Components/ResumePage';
 import { 
   FaHome,
   FaUser, 
   FaCode, 
   FaProjectDiagram,
-  FaBriefcase,
-  FaFileAlt,
-  FaEnvelope
+  FaBars
 } from 'react-icons/fa';
 
 const navItems = [
+  { name: "Home", path: "/", icon: <FaHome /> },
   { name: "About", path: "/about", icon: <FaUser /> },
   { name: "Skills", path: "/skills", icon: <FaCode /> },
-  { name: "Projects", path: "/projects", icon: <FaProjectDiagram /> },
-  // { name: "Work", path: "/work", icon: <FaBriefcase /> },
-  // { name: "Resume", path: "/resume", icon: <FaFileAlt /> },
-  // { name: "Contact", path: "/contact", icon: <FaEnvelope /> }
+  { name: "Projects", path: "/projects", icon: <FaProjectDiagram /> }
 ];
 
 const App = () => {
   const location = useLocation();
-  const [hoverIndex, setHoverIndex] = useState(null);
-  const [activeIndex, setActiveIndex] = useState(-1);
   const [isScrolled, setIsScrolled] = useState(false);
-
-  useEffect(() => {
-    const currentPath = location.pathname;
-    if (currentPath === "/") {
-      setActiveIndex(-1); // Home not in nav items
-    } else {
-      const index = navItems.findIndex(item => item.path === currentPath);
-      setActiveIndex(index);
-    }
-  }, [location.pathname]);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -53,93 +35,100 @@ const App = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
   return (
     <div id="appContainer">
       <motion.header 
         id="navBar" 
-        className={isScrolled ? 'scrolled' : ''}
+        className={`${isScrolled ? 'scrolled' : ''} ${isMobileMenuOpen ? 'menu-open' : ''}`}
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ type: "spring", stiffness: 300, damping: 30 }}
-        onMouseLeave={() => setHoverIndex(null)}
       >
-        <Link to="/" className="home-link">
-          <motion.div 
-            className="logo-container"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <FaHome className="home-icon" />
-          </motion.div>
-        </Link>
+        <motion.div 
+          className="logo-container"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          <span className="logo-text">KK</span>
+        </motion.div>
 
         <nav className="nav-items">
-          {navItems.map((item, index) => (
-            <Link
+          {navItems.map((item) => (
+            <motion.div
               key={item.name}
-              to={item.path}
-              onMouseEnter={() => setHoverIndex(index)}
-              onClick={() => setActiveIndex(index)}
-              className={`nav-link ${location.pathname === item.path ? "active" : ""}`}
+              className="nav-item-container"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
-              <span className="nav-icon">{item.icon}</span>
-              <span className="nav-text">{item.name}</span>
-              {location.pathname === item.path && (
-                <motion.div 
-                  className="active-indicator" 
-                  layoutId="activeIndicator"
-                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                />
-              )}
-            </Link>
+              <Link
+                to={item.path}
+                className={`nav-link ${location.pathname === item.path ? "active" : ""}`}
+              >
+                <motion.span className="nav-icon">
+                  {item.icon}
+                </motion.span>
+                <motion.span className="nav-text">
+                  {item.name}
+                </motion.span>
+                {location.pathname === item.path && (
+                  <motion.div 
+                    className="active-indicator" 
+                    layoutId="activeIndicator"
+                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                  />
+                )}
+              </Link>
+            </motion.div>
           ))}
-          <AnimatePresence>
-            {hoverIndex !== null && activeIndex !== hoverIndex && (
-              <motion.div
-                className="hover-indicator"
-                initial={{ opacity: 0, width: 0 }}
-                animate={{ 
-                  opacity: 1, 
-                  width: "100%",
-                  left: `${hoverIndex * 100}%` 
-                }}
-                exit={{ opacity: 0 }}
-                transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                style={{
-                  position: 'absolute',
-                  bottom: '-2px',
-                  height: '2px',
-                  background: 'var(--main-color2)',
-                  opacity: 0.5,
-                  borderRadius: '2px',
-                  width: '100%',
-                  transform: `translateX(${hoverIndex * 100}%)`
-                }}
-              />
-            )}
-          </AnimatePresence>
         </nav>
 
-        <motion.div 
-          className="mobile-nav"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.2 }}
+        <motion.button
+          className="mobile-menu-button"
+          onClick={toggleMobileMenu}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
         >
-          <div className="scrollable-tabs">
-            {navItems.map((item, index) => (
-              <Link
-                key={item.name}
-                to={item.path}
-                onClick={() => setActiveIndex(index)}
-                className={`mobile-nav-link ${location.pathname === item.path ? "active" : ""}`}
-              >
-                <span className="nav-icon">{item.icon}</span>
-                <span className="nav-text">{item.name}</span>
-              </Link>
-            ))}
-          </div>
-        </motion.div>
+          <FaBars />
+        </motion.button>
+
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div 
+              className="mobile-nav"
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <div className="scrollable-tabs">
+                {navItems.map((item) => (
+                  <motion.div
+                    key={item.name}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <Link
+                      to={item.path}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className={`mobile-nav-link ${location.pathname === item.path ? "active" : ""}`}
+                    >
+                      <motion.span className="nav-icon">
+                        {item.icon}
+                      </motion.span>
+                      <motion.span className="nav-text">
+                        {item.name}
+                      </motion.span>
+                    </Link>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </motion.header>
 
       <main id="mainContainer">
@@ -157,9 +146,6 @@ const App = () => {
               <Route path="/about" element={<AboutPage />} />
               <Route path="/skills" element={<SkillsPage />} />
               <Route path="/projects" element={<ProjectsPage />} />
-              {/* <Route path="/work" element={<WorkPage />} /> */}
-              {/* <Route path="/contact" element={<Contact />} /> */}
-              {/* <Route path="/resume" element={<ResumePage />} /> */}
             </Routes>
           </motion.div>
         </AnimatePresence>
