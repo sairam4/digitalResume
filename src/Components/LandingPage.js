@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
-import homepic from '../Resources/homepic.png';
+import homepic from '../Resources/homepic.jpeg';
 import resumePDF from '../Resources/KhalidMKhan-Resume.pdf'
 import { 
   FaGithub, 
@@ -15,19 +15,19 @@ const socialLinks = [
   { 
     name: "GitHub",
     icon: <FaGithub />,
-    url: "https://github.com/Kahl-d",
+    url: "https://github.com/sairam4",
     color: "#333"
   },
   { 
     name: "LinkedIn",
     icon: <FaLinkedin />,
-    url: "https://www.linkedin.com/in/khalidm-khan/",
+    url: "https://www.linkedin.com/in/shreyas-rscp/",
     color: "#0077b5"
   },
   { 
     name: "Email",
     icon: <FaEnvelopeOpenText />,
-    url: "mailto:khalidmehtabk@gmail.com",
+    url: "mailto:shreyasraghuraman@gmail.com",
     color: "#ea4335"
   }
 ];
@@ -35,19 +35,19 @@ const socialLinks = [
 const LandingPage = () => {
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
   
+  // AI-focused roles for rotation
   const roles = [
-    "AI Engineer",
-    "Statistical Modeling Enthusiast",
-    "Data Scientist",
-    "NLP Expert",
-    "Creative Designer"
+   "AI Engineer",
+    "Full Stack Developer",
+    "Data Engineer",
+    "Power Platform Expert",
+    "AI Acceleration Enthusiast"
   ];
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentTextIndex((prev) => (prev + 1) % roles.length);
-    }, 3000);
-
+    }, 3200); // slightly longer for polished feel
     return () => clearInterval(interval);
   }, []);
 
@@ -65,12 +65,12 @@ const LandingPage = () => {
     center: { 
       y: 0, 
       opacity: 1,
-      transition: { duration: 0.5 }
+      transition: { duration: 0.6, ease: "easeOut" }
     },
     exit: { 
       y: -20, 
       opacity: 0,
-      transition: { duration: 0.5 }
+      transition: { duration: 0.6, ease: "easeIn" }
     }
   };
 
@@ -117,7 +117,7 @@ const LandingPage = () => {
             animate="visible"
             transition={{ delay: 0.2 }}
           >
-            Khalid M Khan
+            Shreyas Raghuraman
           </motion.h1>
 
           <div className="role-container">
@@ -135,6 +135,15 @@ const LandingPage = () => {
             </AnimatePresence>
           </div>
 
+          <motion.div 
+            className="terminal-box"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.2 }}
+          >
+            <code>&gt; run.sh --optimize llama --deploy ollama</code>
+          </motion.div>
+
           <motion.p
             className="description"
             variants={headerVariants}
@@ -142,8 +151,9 @@ const LandingPage = () => {
             animate="visible"
             transition={{ delay: 0.6 }}
           >
-            Transforming data into meaningful insights and creating
-            impactful solutions through innovative approaches.
+            I build with AI that works — fast, smart, and real.
+            From full-stack apps to edge-optimized models, 
+            I turn tools into impact and ideas into high-performance systems.
           </motion.p>
 
           <motion.div

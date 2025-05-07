@@ -193,6 +193,7 @@ button:hover {
   position: relative;
 }
 
+/* Navigation Links */
 .nav-link {
   display: flex;
   align-items: center;
@@ -208,9 +209,38 @@ button:hover {
   color: var(--heading-primary);
 }
 
-.nav-link.active {
+.nav-link.active,
+.mobile-nav-link.active {
+  color: var(--text-primary);
+  background: var(--bg-card-hover);
+  box-shadow: 0 0 12px rgba(0, 184, 148, 0.3), 0 0 4px rgba(0, 184, 148, 0.3) inset;
+  border: 1px solid var(--primary);
+  transform: translateY(-1px);
+}
+
+/* Glowing navigation button style for CTA in nav */
+.nav-button {
+  background: var(--gradient-primary);
   color: var(--primary);
-  background: var(--primary-light);
+  padding: var(--spacing-xs) var(--spacing-md);
+  border-radius: var(--radius-md);
+  font-weight: 500;
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-normal);
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  border: none;
+}
+
+.nav-button:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+  opacity: 0.95;
+  color: var(--text-primary);
 }
 
 .nav-icon {
@@ -265,10 +295,6 @@ button:hover {
   transition: all var(--transition-normal);
 }
 
-.mobile-nav-link.active {
-  color: var(--primary);
-  background: var(--primary-light);
-}
 
 #mainContainer {
   padding-top: var(--nav-height);

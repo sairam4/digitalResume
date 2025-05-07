@@ -49,11 +49,11 @@ const App = () => {
         transition={{ type: "spring", stiffness: 300, damping: 30 }}
       >
         <motion.div 
-          className="logo-container"
+          className="cta-button"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          <span className="logo-text">KK</span>
+          <span className="logo-text">Shreyas Raghuraman</span>
         </motion.div>
 
         <nav className="nav-items">
@@ -66,7 +66,7 @@ const App = () => {
             >
               <Link
                 to={item.path}
-                className={`nav-link ${location.pathname === item.path ? "active" : ""}`}
+                className={`nav-link nav-button ${location.pathname === item.path ? "active" : ""}`}
               >
                 <motion.span className="nav-icon">
                   {item.icon}
@@ -114,7 +114,7 @@ const App = () => {
                     <Link
                       to={item.path}
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className={`mobile-nav-link ${location.pathname === item.path ? "active" : ""}`}
+                      className={`mobile-nav-link nav-button ${location.pathname === item.path ? "active" : ""}`}
                     >
                       <motion.span className="nav-icon">
                         {item.icon}

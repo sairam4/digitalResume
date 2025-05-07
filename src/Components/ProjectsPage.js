@@ -20,7 +20,9 @@ import {
   FaUsers,
   FaArrowRight,
   FaCode,
-  FaLightbulb
+  FaLightbulb,
+  FaImage,
+  FaMicroscope
 } from 'react-icons/fa';
 import teamImage from '../Resources/team.jpg';
 import './ProjectsPage.css';
@@ -30,7 +32,7 @@ const projects = [
     id: "secure-sense",
     name: "Secure Sense",
     description: "Winner of Emerging AI Innovation Hack at SF Hacks 2025. Developed a Chrome browser extension using on-device compact LLMs to detect and mask sensitive user data (emails, personal info) during web browsing in real time, enhancing privacy. Led model compression using distillation (LLaMA) reducing model size from approximately 2GB to less than 400 MB while preserving performance. Deployed compact models locally via Ollama for efficient inference.",
-    link: "#", // Add your GitHub link here
+    link: "https://github.com/sairam4/Secure-Sense", // Add your GitHub link here
     category: "AI",
     year: "2025",
     technologies: ["LLaMA", "Chrome Extension", "Model Compression", "Ollama", "React", "Flask"],
@@ -38,107 +40,121 @@ const projects = [
     featured: true,
     isBanner: true,
     hackathon: "SF Hacks 2025",
-    award: "Emerging AI Innovation Hack Winner"
+    award: "Emerging AI Innovation Hack Winner",
+    tags: ["All", "AI"]
   },
   {
-    id: "cultivate-tacit",
-    name: "Cultivate: TacIT Alma Research",
-    description: "A research initiative exploring cultural capital themes through advanced NLP techniques. Leveraged state-of-the-art transformer models—including DeBERTa, T5, and Mistral—to analyze complex cultural narratives. Employed fine-tuning, prompt engineering, domain adaptation, and t-SNE for dimensionality reduction to extract meaningful insights from extensive textual data.",
-    link: "https://github.com/Kahl-d/Cultivate-TacIT-Alma",
+    id: "smart-nfl-chatbot",
+    name: "Smart NFL Chatbot — AI-Powered Sports Assistant",
+    description: "An intelligent full-stack chatbot that answers complex NFL-related questions using a combination of structured data and semantically indexed news articles. The system features a React frontend, FastAPI backend, and uses MongoDB and ChromaDB for data storage and retrieval. LLM integration via Open Source LLMs enables intelligent responses, even with incomplete data. I architected and deployed the backend on Dockerized AWS EC2 and fine-tuned prompt strategies for hybrid model usage.",
+    link: "https://github.com/sairam4/NFLChatbot",
     category: "AI",
-    year: "2024",
-    technologies: ["DeBERTa", "T5", "Mistral", "Fine-Tuning", "t-SNE", "Prompt Engineering"],
+    year: "2025",
+    technologies: [
+      "React.js", "Tailwind CSS",
+      "FastAPI", "MongoDB", "ChromaDB",
+      "Docker", "EC2", "OpenRouter",
+      "LLaMA", "GPT-4o", "NLTK", "RapidFuzz", "async I/O"
+    ],
     icon: <FaBrain />,
-    featured: true
+    featured: true,
+    tags: ["All", "AI", "Data Engineering", "Web Development"]
   },
   {
-    id: "context-data-augmentation",
-    name: "Context-Aware Data Augmentation",
-    description: "Developed a robust data augmentation pipeline to enhance model performance in low-resource scenarios. Integrated explainability tools such as SHAP and LIME with fine-tuning strategies to generate context-aware synthetic data, resulting in improved training efficacy and model interpretability.",
-    link: "https://github.com/Kahl-d/Data-Augmentation-Project",
-    category: "AI",
-    year: "2024",
-    technologies: ["SHAP", "LIME", "Fine-Tuning", "Transformers"],
-    icon: <FaProjectDiagram />,
-    featured: true
-  },
-  {
-    id: "keep-notes-llm",
-    name: "Keep Notes LLM",
-    description: "Designed and implemented an AI-driven note-taking application that adapts to individual writing styles. Utilized large language models and custom embedding techniques to provide personalized content organization and retrieval, ensuring a seamless user experience.",
-    link: "https://github.com/Kahl-d/Keep-Notes-LLM",
-    category: "AI",
-    year: "2024",
-    technologies: ["Large Language Models", "Custom Embeddings", "NLP", "Memory-Based AI"],
-    icon: <FaBook />,
-    featured: true
-  },
-  {
-    id: "personal-rag",
-    name: "Personal RAG Assistant",
-    description: "Created a personalized assistant leveraging Retrieval-Augmented Generation (RAG) to address user-specific queries. Combined advanced language models with a curated knowledge base to deliver precise, contextually relevant responses, enhancing productivity.",
-    link: "https://github.com/Kahl-d/Personal-RAG",
-    category: "AI",
-    year: "2024",
-    technologies: ["RAG", "LangChain", "VectorDB", "Large Language Models"],
-    icon: <FaDatabase />,
-    featured: true
-  },
-  {
-    id: "flight-fare",
-    name: "Flight Fare Prediction",
-    description: "Developed a predictive model for forecasting flight fare fluctuations using machine learning. Employed statistical analysis and regression techniques to analyze historical data, resulting in accurate and actionable pricing predictions.",
-    link: "https://github.com/nh0397/Flight-Fare-Prediction",
+    id: "election-insights-dashboard",
+    name: "U.S. Election Insights Dashboard — Interactive Power BI Analysis (2020 Edition)",
+    description: "An advanced, interactive Power BI dashboard visualizing all the U.S. Presidential Election results across all states for past 200 years. The report includes dynamic visual elements such as a winner-by-state map, swing state filters, decomposition trees for winner analysis, party-wise vote share comparisons, and embedded Python visuals for extended statistical insights. The dashboard allows users to explore each election year (2012, 2016, 2020, etc.) through a page navigator, while each page provides deep-dive analysis on a specific year.",
+    link: "https://app.powerbi.com/view?r=eyJrIjoiMTQ5ZjhlMmMtYmQ4ZC00ZjlhLWFjM2YtMGFlNWE4OWVlYjczIiwidCI6IjA0Yjk2OGM1LWM1MDMtNDFiOC1hNGY4LTE4YzY5ZjRhZmRlNiJ9&pageName=ReportSection",
     category: "Data Science",
-    year: "2022",
-    technologies: ["Python", "Scikit-Learn", "Pandas", "Matplotlib"],
-    icon: <FaPlane />,
-    featured: false
-  },
-  {
-    id: "advanced-nlp",
-    name: "Advanced NLP Techniques",
-    description: "Implemented cutting-edge natural language processing methodologies, including n-gram analysis, neural network architectures, and encoder-decoder models. Developed solutions for text classification, sentiment analysis, and contextual language understanding to extract actionable insights from complex datasets.",
-    link: "https://github.com/Kahl-d/Natural-Language-Processing",
-    category: "NLP",
-    year: "2021",
-    technologies: ["Python", "NLTK", "SpaCy", "TensorFlow", "n-grams", "Neural Networks", "Encoder-Decoder Models"],
-    icon: <FaLanguage />,
-    featured: false
-  },
-  {
-    id: "data-viz",
-    name: "Data Visualization with DataWiz",
-    description: "Engineered an interactive data visualization platform, DataWiz, that transforms raw data into dynamic, insightful charts and graphs. Utilized modern visualization libraries to deliver compelling visual narratives for data-driven decision making.",
-    link: "https://github.com/Kahl-d/DataWiz-Visualization",
-    category: "Data Science",
-    year: "2023",
-    technologies: ["Python", "D3.js", "Plotly", "Tableau"],
+    year: "2024",
+    technologies: [
+      "Power BI", "DAX", "Python", "matplotlib", "seaborn",
+      "CSV Data Modeling", "Interactive Visual Analytics"
+    ],
     icon: <FaChartBar />,
-    featured: false
+    featured: true,
+    tags: ["All", "Power Platform", "Data Science"]
   },
   {
-    id: "web-portfolio",
-    name: "Web Development Portfolio",
-    description: "Showcased a portfolio of responsive, high-performance web applications built using modern web development frameworks. Emphasized clean design, scalability, and cross-platform compatibility to deliver exceptional user experiences.",
-    link: "https://github.com/Kahl-d/Web-Development",
+    id: "ai-image-editor",
+    name: "AI-Powered Visual Rebranding Tool — OCR & Generative Inpainting",
+    description: "An end-to-end image editing system that intelligently removes and replaces text from posters and images using dual OCR engines and DALL·E-based inpainting. Designed to help non-designers repurpose visual assets quickly. Combines OpenCV-based preprocessing with EasyOCR and Google Vision OCR for layered text detection, and uses OpenAI’s DALL·E API to regenerate masked regions with context-aware visuals.",
+    link: "https://github.com/sairam4/better-text-generator",
+    category: "Computer Vision",
+    year: "2025",
+    technologies: [
+      "OpenCV", "EasyOCR", "Google Vision",
+      "DALL·E API", "Pillow", "NumPy"
+    ],
+    icon: <FaImage />,
+    featured: true,
+    tags: ["All", "AI", "Computer Vision"]
+  },
+  {
+    id: "siliconsense-wafer-diagnosis",
+    name: "SiliconSense: Dual-Head TinyViT + CoT for Wafer Defect Diagnosis & Reasoning",
+    description: "An end-to-end AI system for diagnosing and explaining defect patterns in semiconductor wafer maps using both vision and reasoning. Combines a dual-head TinyViT model with Chain-of-Thought (CoT) logic to classify defect types and generate human-like explanations. Simulates a factory inspection pipeline, enabling interpretable diagnostics with efficient edge deployment.",
+    link: "#",
+    category: "AI",
+    year: "2025",
+    technologies: [
+      "PyTorch", "TinyViT", "Transformers", "BERT", "jsonl",
+      "NumPy", "Google Colab", "OpenAI GPT-4", "Matplotlib", "Grad-CAM"
+    ],
+    icon: <FaMicroscope />,
+    featured: true,
+    tags: ["All", "AI", "Computer Vision"]
+  },
+  {
+    id: "program-pathway-explorer",
+    name: "Academic Program Pathway Explorer (POC)",
+    description: "A proof-of-concept web app that allows users to browse academic programs by college and download program data in real time. Built using MongoDB, Next.js (App Router), Tailwind CSS, and exposed locally via ngrok for external API testing. Supports dynamic routing, API-based JSON downloads, and responsive UI.",
+    link: "#",
     category: "Web Development",
-    year: "2020",
-    technologies: ["HTML", "CSS", "JavaScript", "React"],
-    icon: <FaGlobe />,
-    featured: false
+    year: "2025",
+    technologies: [
+      "MongoDB", "Next.js", "Tailwind CSS", "ngrok", "REST API", "json2csv"
+    ],
+    icon: <FaBook />,
+    featured: true,
+    tags: ["All", "Data Engineering", "Web Development", "Data Science"]
   },
   {
-    id: "sentiment-analysis",
-    name: "Sentiment Analysis with IBM Watson",
-    description: "Developed a sentiment analysis tool leveraging IBM Watson's AI capabilities. Processed and analyzed textual data to accurately gauge sentiment, enabling real-time, data-driven decision making.",
-    link: "https://github.com/Kahl-d/Sentiment-Analysis-IBM-Watson",
-    category: "Data Science",
-    year: "2021",
-    technologies: ["IBM Watson", "Python", "Flask", "Bootstrap"],
-    icon: <FaSmile />,
-    featured: false
+    id: "global-pnl-tracking",
+    name: "Global Profit & Loss Automation Suite",
+    description: "Designed and implemented an enterprise-grade automation system to track profit and loss across global contracts using Power Apps, SQL Server, and Power BI. Integrated Power Automate workflows for daily refreshes and Azure Data Factory pipelines for large-scale data ingestion. Enabled 5,000+ users to monitor financial performance with 80% reduction in manual effort.",
+    link: "#",
+    category: "Data Engineering",
+    year: "2023",
+    technologies: ["Power Apps", "Power BI", "SQL Server", "Power Automate", "Azure Data Factory"],
+    icon: <FaChartBar />,
+    featured: true,
+    tags: ["All", "Professional Experience", "Power Platform", "Data Engineering"]
   },
+  {
+    id: "legacy-app-modernization",
+    name: "Legacy App Modernization & Performance Revamp",
+    description: "Led a full-stack modernization effort of a critical enterprise application impacting thousands of users. Migrated from legacy systems to Power Platform and SQL Server, optimized backend queries using CTEs and MERGE operations, and introduced responsive design for mobile access. Achieved 60% boost in responsiveness and cut maintenance costs by 80%.",
+    link: "#",
+    category: "Web Development",
+    year: "2023",
+    technologies: ["Power Apps", "SQL Server", "Responsive Design", "Power Automate", "SharePoint"],
+    icon: <FaProjectDiagram />,
+    featured: true,
+    tags: ["All", "Professional Experience", "Power Platform", "Data Engineering"]
+  },
+  {
+    id: "sharepoint-automation-platform",
+    name: "SharePoint Governance & Automation Platform",
+    description: "Standardized SharePoint site architecture across a global enterprise. Used Power Automate and Office 365 Graph API for automated provisioning, implemented JSON-based formatting for intuitive views, and created admin dashboards to monitor access patterns. Resulted in 40% increase in adoption and 30% reduction in IT workload.",
+    link: "#",
+    category: "Automation",
+    year: "2023",
+    technologies: ["SharePoint", "Power Automate", "Office 365 Graph API", "Power BI", "JSON Views"],
+    icon: <FaFolderOpen />,
+    featured: true,
+    tags: ["All", "Professional Experience", "Power Platform", "Data Engineering"]
+  }
 ];
 
 const ProjectsPage = () => {
@@ -168,12 +184,17 @@ const ProjectsPage = () => {
 
   // Filter projects when category changes
   useEffect(() => {
-    const filtered = projects.filter(project =>
-      selectedCategory === "All" || project.category === selectedCategory
-    );
-    
-    setDisplayedProjects(filtered.filter(project => !project.featured));
-    setFeaturedProjects(filtered.filter(project => project.featured));
+    const featuredIds = ["secure-sense", "smart-nfl-chatbot", "siliconsense-wafer-diagnosis"];
+    if (selectedCategory === "All") {
+      setDisplayedProjects(projects);
+    } else {
+      setDisplayedProjects(
+        projects.filter(project =>
+          project.tags.includes(selectedCategory)
+        )
+      );
+    }
+    setFeaturedProjects(projects.filter(project => featuredIds.includes(project.id)));
   }, [selectedCategory]);
 
   // Get category counts for UI
@@ -183,18 +204,22 @@ const ProjectsPage = () => {
     };
     
     projects.forEach(project => {
-      if (!counts[project.category]) {
-        counts[project.category] = 1;
-      } else {
-        counts[project.category]++;
-      }
+      project.tags.forEach(tag => {
+        if (tag !== "All") {
+          if (!counts[tag]) {
+            counts[tag] = 1;
+          } else {
+            counts[tag]++;
+          }
+        }
+      });
     });
     
     return counts;
   };
   
   const categoryCounts = getCategoryCounts();
-  const categories = ["All", "AI", "Data Science", "Web Development", "NLP"];
+  const categories = ["All", "AI", "Data Science", "Web Development", "Data Engineering", "Computer Vision", "Power Platform", "Professional Experience"];
 
   return (
     <div className="projects-page">
@@ -259,7 +284,15 @@ const ProjectsPage = () => {
               variants={itemVariants}
               whileHover={{ y: -10 }}
             >
-              <div className="card-icon">{project.icon}</div>
+              <div className="card-top-row">
+                <div className="card-icon">{project.icon}</div>
+                {project.id === "secure-sense" && (
+                  <span className="category-tag-badge featured-tag">MLH Winner</span>
+                )}
+                {project.id === "siliconsense-wafer-diagnosis" && (
+                  <span className="category-tag-badge featured-tag">In Progress</span>
+                )}
+              </div>
               <h3>{project.name}</h3>
               <p>{project.description}</p>
               <div className="card-tech">
@@ -267,10 +300,12 @@ const ProjectsPage = () => {
                   <span key={tech}>{tech}</span>
                 ))}
               </div>
-              <a href={project.link} className="card-link">
-                Learn More
-                <FaArrowRight />
-              </a>
+              {project.link !== "#" && (
+                <a href={project.link} className="card-link">
+                  Learn More
+                  <FaArrowRight />
+                </a>
+              )}
             </motion.div>
           ))}
         </motion.div>
@@ -279,7 +314,7 @@ const ProjectsPage = () => {
       {/* Project Categories Section */}
       <section className="categories-section">
         <div className="section-header">
-          <h2>Explore by Category</h2>
+          <h2>Explore all Projects</h2>
           <p>Browse projects based on your interests</p>
         </div>
         <div className="category-grid">
@@ -295,7 +330,10 @@ const ProjectsPage = () => {
                 {category === 'AI' && <FaBrain />}
                 {category === 'Data Science' && <FaChartBar />}
                 {category === 'Web Development' && <FaCode />}
-                {category === 'NLP' && <FaLanguage />}
+                {category === 'Data Engineering' && <FaDatabase />}
+                {category === 'Computer Vision' && <FaMicroscope />}
+                {category === 'Power Platform' && <FaProjectDiagram />}
+                {category === 'Professional Experience' && <FaUsers />}
                 {category === 'All' && <FaLightbulb />}
               </div>
               <h3>{category}</h3>
@@ -307,10 +345,7 @@ const ProjectsPage = () => {
 
       {/* All Projects Section */}
       <section className="all-projects-section">
-        <div className="section-header">
-          <h2>All Projects</h2>
-          <p>Complete portfolio of my work</p>
-        </div>
+        
         <div className="projects-list">
           {displayedProjects.map((project, index) => (
             <motion.div
@@ -323,19 +358,30 @@ const ProjectsPage = () => {
               <div className="project-info">
                 <div className="project-header">
                   <h3>{project.name}</h3>
-                  <span className="project-year">{project.year}</span>
+                </div>
+                <div className="project-tags">
+                  {project.tags.filter(tag => tag !== "All").map(tag => (
+                    <span key={tag} className="category-tag-badge">{tag}</span>
+                  ))}
                 </div>
                 <p>{project.description}</p>
+                {/* <div className="project-tags">
+                  {project.tags.filter(tag => tag !== "All").map(tag => (
+                    <span key={tag} className="tech-pill">{tag}</span>
+                  ))}
+                </div> */}
                 <div className="project-tech">
                   {project.technologies.map(tech => (
                     <span key={tech}>{tech}</span>
                   ))}
                 </div>
               </div>
-              <a href={project.link} className="project-link">
-                View Project
-                <FaExternalLinkAlt />
-              </a>
+              {project.link !== "#" && (
+                <a href={project.link} className="project-link">
+                  View Project
+                  <FaExternalLinkAlt />
+                </a>
+              )}
             </motion.div>
           ))}
         </div>
