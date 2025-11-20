@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
-import homepic from '../Resources/homepic.jpeg';
+import homepic from '../Resources/shreyashomepic.png';
 import resumePDF from '../Resources/ShreyasRaghuramanResume.pdf'
 import { 
   FaGithub, 
