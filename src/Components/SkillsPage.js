@@ -98,7 +98,7 @@ const InteractiveHeader = () => {
               onHoverEnd={() => setHovered(null)}
               animate={{
                 scale: hovered === w ? 1.1 : 1,
-                color: hovered === w ? "var(--primary)" : "var(--text-secondary)"
+                color: hovered === w ? "#1B4332" : "#5A6B63"
               }}
               transition={{ duration: 0.3, delay: i * 0.1 }}
             >

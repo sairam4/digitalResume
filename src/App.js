@@ -6,6 +6,8 @@ import LandingPage from './Components/LandingPage';
 import AboutPage from './Components/AboutPage';
 import SkillsPage from './Components/SkillsPage';
 import ProjectsPage from './Components/ProjectsPage';
+import ProjectDetail from './Components/ProjectDetail';
+import ResearchPage from './Components/ResearchPage';
 import { 
   FaHome,
   FaUser, 
@@ -66,7 +68,7 @@ const App = () => {
             >
               <Link
                 to={item.path}
-                className={`nav-link nav-button ${location.pathname === item.path ? "active" : ""}`}
+                className={`nav-link nav-button ${location.pathname === item.path || (item.path === "/projects" && (location.pathname.startsWith("/projects/") || location.pathname === "/research")) ? "active" : ""}`}
               >
                 <motion.span className="nav-icon">
                   {item.icon}
@@ -74,7 +76,7 @@ const App = () => {
                 <motion.span className="nav-text">
                   {item.name}
                 </motion.span>
-                {location.pathname === item.path && (
+                {(location.pathname === item.path || (item.path === "/projects" && (location.pathname.startsWith("/projects/") || location.pathname === "/research"))) && (
                   <motion.div 
                     className="active-indicator" 
                     layoutId="activeIndicator"
@@ -114,7 +116,7 @@ const App = () => {
                     <Link
                       to={item.path}
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className={`mobile-nav-link nav-button ${location.pathname === item.path ? "active" : ""}`}
+                      className={`mobile-nav-link nav-button ${location.pathname === item.path || (item.path === "/projects" && (location.pathname.startsWith("/projects/") || location.pathname === "/research")) ? "active" : ""}`}
                     >
                       <motion.span className="nav-icon">
                         {item.icon}
@@ -146,6 +148,8 @@ const App = () => {
               <Route path="/about" element={<AboutPage />} />
               <Route path="/skills" element={<SkillsPage />} />
               <Route path="/projects" element={<ProjectsPage />} />
+              <Route path="/projects/:id" element={<ProjectDetail />} />
+              <Route path="/research" element={<ResearchPage />} />
             </Routes>
           </motion.div>
         </AnimatePresence>
