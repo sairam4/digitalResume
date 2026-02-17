@@ -3,28 +3,28 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import homepic from '../Resources/shreyashomepic.png';
 import resumePDF from '../Resources/ShreyasRaghuramanResume.pdf'
-import { 
-  FaGithub, 
-  FaLinkedin, 
+import {
+  FaGithub,
+  FaLinkedin,
   FaEnvelopeOpenText,
   FaArrowRight
 } from 'react-icons/fa';
 import './lp.css';
 
 const socialLinks = [
-  { 
+  {
     name: "GitHub",
     icon: <FaGithub />,
     url: "https://github.com/sairam4",
     color: "#1B4332"
   },
-  { 
+  {
     name: "LinkedIn",
     icon: <FaLinkedin />,
     url: "https://www.linkedin.com/in/shreyas-rscp/",
     color: "#0077b5"
   },
-  { 
+  {
     name: "Email",
     icon: <FaEnvelopeOpenText />,
     url: "mailto:shreyasraghuraman@gmail.com",
@@ -34,10 +34,10 @@ const socialLinks = [
 
 const LandingPage = () => {
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
-  
+
   // AI-focused roles for rotation
   const roles = [
-   "AI Engineer",
+    "AI Engineer",
     "Full Stack Developer",
     "Data Engineer",
     "Power Platform Expert",
@@ -49,12 +49,12 @@ const LandingPage = () => {
       setCurrentTextIndex((prev) => (prev + 1) % roles.length);
     }, 3200); // slightly longer for polished feel
     return () => clearInterval(interval);
-  }, []);
+  }, [roles.length]);
 
   const headerVariants = {
     hidden: { y: -20, opacity: 0 },
-    visible: { 
-      y: 0, 
+    visible: {
+      y: 0,
       opacity: 1,
       transition: { duration: 0.6, ease: "easeOut" }
     }
@@ -62,13 +62,13 @@ const LandingPage = () => {
 
   const roleVariants = {
     enter: { y: 20, opacity: 0 },
-    center: { 
-      y: 0, 
+    center: {
+      y: 0,
       opacity: 1,
       transition: { duration: 0.6, ease: "easeOut" }
     },
-    exit: { 
-      y: -20, 
+    exit: {
+      y: -20,
       opacity: 0,
       transition: { duration: 0.6, ease: "easeIn" }
     }
@@ -77,7 +77,7 @@ const LandingPage = () => {
   return (
     <div className="landing-container">
       <div className="gradient-bg"></div>
-      
+
       <div className="social-links">
         {socialLinks.map((link, index) => (
           <motion.a
@@ -86,7 +86,7 @@ const LandingPage = () => {
             target="_blank"
             rel="noopener noreferrer"
             className="social-link"
-            whileHover={{ 
+            whileHover={{
               scale: 1.1,
               color: link.color
             }}
@@ -109,7 +109,7 @@ const LandingPage = () => {
           >
             Hi, I'm
           </motion.p>
-          
+
           <motion.h1
             className="name"
             variants={headerVariants}
@@ -135,7 +135,7 @@ const LandingPage = () => {
             </AnimatePresence>
           </div>
 
-          <motion.div 
+          <motion.div
             className="terminal-box"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -152,7 +152,7 @@ const LandingPage = () => {
             transition={{ delay: 0.6 }}
           >
             I build with AI that works — fast, smart, and real.
-            From full-stack apps to edge-optimized models, 
+            From full-stack apps to edge-optimized models,
             I turn tools into impact and ideas into high-performance systems.
           </motion.p>
 
@@ -172,7 +172,7 @@ const LandingPage = () => {
                 View Projects <FaArrowRight style={{ marginLeft: "8px" }} />
               </motion.button>
             </Link>
-            
+
             <a href={resumePDF} download>
               <motion.button
                 className="cta-button secondary"
@@ -192,9 +192,9 @@ const LandingPage = () => {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
-          <motion.div 
+          <motion.div
             className="image-backdrop"
-            animate={{ 
+            animate={{
               rotate: [-5, 5, -5],
               scale: [0.95, 1, 0.95]
             }}
@@ -204,9 +204,9 @@ const LandingPage = () => {
               ease: "easeInOut"
             }}
           />
-          <img 
+          <img
             src={homepic}
-            alt="Profile" 
+            alt="Profile"
             className="profile-image"
           />
         </motion.div>

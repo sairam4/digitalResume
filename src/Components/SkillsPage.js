@@ -2,13 +2,11 @@
 import React, { useState, useMemo } from "react";
 import { motion } from "framer-motion";
 import { FaSearch } from "react-icons/fa";
-import { 
-  SiPython, SiJavascript, SiCplusplus, SiPytorch, SiTensorflow,
-  SiScikitlearn, SiPandas, SiNumpy, SiFlask, SiReact,
+import {
+  SiPython, SiJavascript, SiCplusplus, SiPytorch,
+  SiScikitlearn, SiReact,
   SiDocker, SiKubernetes, SiAmazonaws, SiMicrosoftazure,
-  SiMongodb, SiTableau, SiJupyter, SiGit,
-  SiWeightsandbiases, SiMysql,
-  SiNextdotjs,
+  SiMongodb, SiMysql,
   SiPowerbi,
   SiPowerautomate,
   SiMicrosoftsharepoint,
@@ -20,10 +18,10 @@ import {
   SiPostgresql,
   SiMicrosoftsqlserver
 } from "react-icons/si";
-import { 
+import {
   FaBrain, FaCode, FaDatabase, FaCloud, FaTools,
-  FaMicrochip, FaRobot, FaChartLine, FaServer,
-  FaImage, FaMicroscope, FaLightbulb
+  FaRobot, FaChartLine,
+  FaImage, FaLightbulb
 } from "react-icons/fa";
 import './SkillsPage.css';
 
@@ -43,7 +41,7 @@ const allSkills = [
   { name: "Semantic Search", icon: <FaCloud />, category: "NLP" },
   { name: "FastAPI", icon: <SiFastapi />, category: "Web Dev" },
   { name: "React", icon: <SiReact />, category: "Web Dev" },
-  
+
   { name: "Docker", icon: <SiDocker />, category: "Cloud & DevOps" },
   { name: "Kubernetes", icon: <SiKubernetes />, category: "Cloud & DevOps" },
   { name: "AWS", icon: <SiAmazonaws />, category: "Cloud & DevOps" },
@@ -87,7 +85,7 @@ const InteractiveHeader = () => {
       >
         <h1>Technical Skills</h1>
         <p className="skills-subtitle">
-        From training models to deploying full-stack platforms and scaling them in the cloud - these are the tools I use to build real-world solutions .
+          From training models to deploying full-stack platforms and scaling them in the cloud - these are the tools I use to build real-world solutions .
         </p>
         <div className="floating-words">
           {words.map((w, i) => (

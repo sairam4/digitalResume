@@ -1,0 +1,32 @@
+{
+  "files": {
+    "main.css": "/static/css/main.9f496960.css",
+    "main.js": "/static/js/main.1e4a0670.js",
+    "static/media/shreyashomepic.png": "/static/media/shreyashomepic.58f873f6c41aa7ed9f3c.png",
+    "static/media/team.jpg": "/static/media/team.ffba896c49edcaec03e4.jpg",
+    "static/media/ShreyasRaghuramanResume.pdf": "/static/media/ShreyasRaghuramanResume.ddcb7f4097e3b86cab09.pdf",
+    "static/media/edm.jpeg": "/static/media/edm.30e5848e553ae0a32648.jpeg",
+    "static/media/postgresql.svg": "/static/media/postgresql.4d89da07f5b01320923e.svg",
+    "static/media/kubernetes.svg": "/static/media/kubernetes.9c5a755e92dceda60802.svg",
+    "static/media/amazonwebservices.svg": "/static/media/amazonwebservices.c0ae476d25337a7845a6.svg",
+    "static/media/react.svg": "/static/media/react.8e63d418a6421cc2662e.svg",
+    "static/media/docker.svg": "/static/media/docker.0c0999b7624d2bfcb771.svg",
+    "static/media/openai.svg": "/static/media/openai.7cbf39b08f508de52c81.svg",
+    "static/media/python.svg": "/static/media/python.e146c98dc5517bd9c7e6.svg",
+    "static/media/readdotcv.svg": "/static/media/readdotcv.aee8ad521d3fc2671c82.svg",
+    "static/media/nvidia.svg": "/static/media/nvidia.f5c3280de07bfdd99c2b.svg",
+    "static/media/awslambda.svg": "/static/media/awslambda.975449478c8e0df71ab3.svg",
+    "index.html": "/index.html",
+    "static/media/mongodb.svg": "/static/media/mongodb.d930c2c4198d1000c2fb.svg",
+    "static/media/yolo.svg": "/static/media/yolo.b9675c1f7ad784c87335.svg",
+    "static/media/pytorch.svg": "/static/media/pytorch.e64d02bdfe5507b5c8ec.svg",
+    "static/media/fastapi.svg": "/static/media/fastapi.b3faf728b139611af33e.svg",
+    "static/media/nextdotjs.svg": "/static/media/nextdotjs.7ff86746ec25a6637a0f.svg",
+    "main.9f496960.css.map": "/static/css/main.9f496960.css.map",
+    "main.1e4a0670.js.map": "/static/js/main.1e4a0670.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.9f496960.css",
+    "static/js/main.1e4a0670.js"
+  ]
+}
